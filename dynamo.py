@@ -46,16 +46,32 @@ def readTable(dynamo,name):
         items = error
     return items
     
+def updateData(dynamo,name):
+    table = dynamo.Table(name)
+    restlt = ""
+    items = json.loads(pathlib.Path('dbScripts/updateItem/update.json').read_text())
+    result = ""
+    for item in items:
+        try:
+            output = str(table.update_item(item))
+        except botocore.exceptions.ClientError as error:
+            output = str(error)
+        result+=output
+        result+="\n"
+    return result
 
 
 dynamo = boto3.resource('dynamodb')
 name = "test"
 
-#creationStatus = createTable(dynamo,name)
-#print(creationStatus)
+creationStatus = createTable(dynamo,name)
+print(creationStatus)
 
 #insertStatus = addItems(dynamo,name)
 #print(insertStatus)
 
-table = readTable(dynamo,name)
-print(table)
+#table = readTable(dynamo,name)
+#print(table)
+
+#updateStatus = updateData(dynamo,name)
+#print(updateStatus)

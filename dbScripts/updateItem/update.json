@@ -1,0 +1,10 @@
+{
+"Key"={
+    "username": "janedoe",
+    "last_name": "Doe"
+},
+UpdateExpression="SET age = :val1",
+ExpressionAttributeValues={
+    ":val1": 26
+}
+}
