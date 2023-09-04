@@ -2,8 +2,9 @@ pipeline{
     agent any
     stages{
         stage('Build'){
-            if ${Options} == "add"
+            if (${Options} == "add"){
             print("add")
+            }
         }
     }
 }
