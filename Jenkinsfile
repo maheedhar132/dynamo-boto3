@@ -4,7 +4,7 @@ pipeline{
         stage('Build'){
             steps{
                 script{
-                    if (${Options} == "add"){
+                    if (params.Options == "add"){
                     print("add")
                     }
                     }
