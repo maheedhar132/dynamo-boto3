@@ -3,9 +3,11 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-            if (${Options} == "add"){
-            print("add")
-            }
+                script{
+                    if (${Options} == "add"){
+                    print("add")
+                    }
+                    }
         }
     }
 }
