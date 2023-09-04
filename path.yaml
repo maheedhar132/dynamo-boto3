@@ -1,0 +1,8 @@
+---
+createTable:
+    Schema: dbscripts/createTable/Schema.json
+    attributeDefinitions: dbScripts/createTable/AttributeDefinitions.json
+addData: dbScripts\addData\items.json
+deleteData: dbScripts\deleteData\items.json
+getItem: dbScripts\getItem\items.json
+updatetem: dbScripts\updateItem\items.json
