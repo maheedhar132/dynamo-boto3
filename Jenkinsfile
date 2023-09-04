@@ -2,7 +2,8 @@ pipeline{
     agent any
     stages{
         stage('Build'){
-            steps{bat "echo 'Stage1' "}
+            if ${Options} == "add"
+            print("add")
         }
     }
 }
