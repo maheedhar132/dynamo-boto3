@@ -2,7 +2,7 @@ pipeline{
     agent any
     stages{
         stage('Build'){
-            steps{sh "echo 'Stage1' "}
+            steps{bat "echo 'Stage1' "}
         }
     }
 }
