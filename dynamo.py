@@ -2,14 +2,28 @@ import boto3
 import json
 import pathlib
 import botocore
+import yaml
 
+with open("path.yaml", "r") as stream:
+    try:
+       files = (yaml.safe_load(stream))
+    except yaml.YAMLError as exc:
+        print(exc)
+#Fetch file paths
+createSchema = files['createTable']['Schema']
+createDefinition = files['createTable']['attributeDefinitions']
+addData = files['addData']
+deleteData = files['deleteData']
+getData = files['getItem']
+itemsToUpdate = files['updateItem']['itemsToUpdate']
+fieldsToUpdate = files['updateItem']['fieldsToUpdate']
 
 def createTable(dynamo,Name):
     try:
         table = dynamo.create_table(
             TableName = Name,
-            KeySchema = json.loads(pathlib.Path('dbScripts/createTable/Schema.json').read_text()),
-            AttributeDefinitions = json.loads(pathlib.Path('dbScripts/createTable/AttributeDefinitions.json').read_text()),
+            KeySchema = json.loads(pathlib.Path(createSchema).read_text()),
+            AttributeDefinitions = json.loads(pathlib.Path(createDefinition).read_text()),
                 ProvisionedThroughput={
                     'ReadCapacityUnits': 5,
                     'WriteCapacityUnits': 5
@@ -24,7 +38,7 @@ def createTable(dynamo,Name):
 
 def addItems(dynamo,name):
     table = dynamo.Table(name)
-    items = json.loads(pathlib.Path('dbScripts/addData/items.json').read_text())
+    items = json.loads(pathlib.Path(addData).read_text())
     result = ""
     for item in items:
         try:
@@ -49,8 +63,8 @@ def readTable(dynamo,name):
 def updateData(dynamo,name):
     table = dynamo.Table(name)
     result = ""
-    items = json.loads(pathlib.Path('dbScripts/updateItem/items.json').read_text())
-    update = json.loads(pathlib.Path('dbScripts/updateItem/items.json').read_text())
+    items = json.loads(pathlib.Path(itemsToUpdate).read_text())
+    update = json.loads(pathlib.Path(fieldsToUpdate).read_text())
     result = ""
     for i in range(0,len(items)):
         try:
@@ -67,7 +81,7 @@ def updateData(dynamo,name):
 def deleteData(dynamo,name):
     table = dynamo.Table(name)
     result = ""
-    items = json.loads(pathlib.Path('dbScripts/deleteData/items.json').read_text())
+    items = json.loads(pathlib.Path(deleteData).read_text())
     for item in items:
         try:
             output = str(table.delete_item(
@@ -82,7 +96,7 @@ def deleteData(dynamo,name):
 def getItem(dynamo,name):
     table = dynamo.Table(name)
     result = ""
-    items = json.loads(pathlib.Path('dbScripts/deleteData/items.json').read_text())
+    items = json.loads(pathlib.Path(getData).read_text())
     for item in items:
         try:
             output = str(table.get_item(
