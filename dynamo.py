@@ -8,8 +8,8 @@ def createTable(dynamo,Name):
     try:
         table = dynamo.create_table(
             TableName = Name,
-            KeySchema = json.loads(pathlib.Path("dbScripts/createTable/Schema.json").read_text()),
-            AttributeDefinitions = json.loads(pathlib.Path("dbScripts/createTable/AttributeDefinitions.json").read_text()),
+            KeySchema = json.loads(pathlib.Path('dbScripts/createTable/Schema.json').read_text()),
+            AttributeDefinitions = json.loads(pathlib.Path('dbScripts/createTable/AttributeDefinitions.json').read_text()),
                 ProvisionedThroughput={
                     'ReadCapacityUnits': 5,
                     'WriteCapacityUnits': 5
@@ -48,12 +48,30 @@ def readTable(dynamo,name):
     
 def updateData(dynamo,name):
     table = dynamo.Table(name)
-    restlt = ""
-    items = json.loads(pathlib.Path('dbScripts/updateItem/update.json').read_text())
     result = ""
+    items = json.loads(pathlib.Path('dbScripts/updateItem/items.json').read_text())
+    update = json.loads(pathlib.Path('dbScripts/updateItem/items.json').read_text())
+    result = ""
+    for i in range(0,len(items)):
+        try:
+            output = str(table.update_item(
+                Key = items[0] |
+                update[0]
+            ))
+        except botocore.exceptions.ClientError as error:
+            output = str(error)
+        result+=output
+        result+="\n"
+    return result
+
+def deleteData(dynamo,name):
+    table = dynamo.Table(name)
+    result = ""
+    items = json.loads(pathlib.Path('dbScripts/deleteData/items.json').read_text())
     for item in items:
         try:
-            output = str(table.update_item(item))
+            output = str(table.delete_item(
+                Key = item))
         except botocore.exceptions.ClientError as error:
             output = str(error)
         result+=output
@@ -61,11 +79,29 @@ def updateData(dynamo,name):
     return result
 
 
-dynamo = boto3.resource('dynamodb')
-name = "test"
+def getItem(dynamo,name):
+    table = dynamo.Table(name)
+    result = ""
+    items = json.loads(pathlib.Path('dbScripts/deleteData/items.json').read_text())
+    for item in items:
+        try:
+            output = str(table.get_item(
+                Key = item))
+        except botocore.exceptions.ClientError as error:
+            output = str(error)
+        result+=output
+        result+="\n"
+    return result
 
-creationStatus = createTable(dynamo,name)
-print(creationStatus)
+
+
+
+
+dynamo = boto3.resource('dynamodb')
+name = "tests"
+
+#creationStatus = createTable(dynamo,name)
+#print(creationStatus)
 
 #insertStatus = addItems(dynamo,name)
 #print(insertStatus)
@@ -75,3 +111,9 @@ print(creationStatus)
 
 #updateStatus = updateData(dynamo,name)
 #print(updateStatus)
+
+#deleteStatus = deleteData(dynamo,name)
+#print(deleteData)
+
+get = getItem(dynamo,name)
+print(get)

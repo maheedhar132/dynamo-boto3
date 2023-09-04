@@ -1,10 +1,6 @@
-{
-"Key"={
-    "username": "janedoe",
-    "last_name": "Doe"
-},
-UpdateExpression="SET age = :val1",
-ExpressionAttributeValues={
-    ":val1": 26
+[{
+"UpdateExpression":"SET last_name = :val1",
+"ExpressionAttributeValues":{
+    ":val1": "Deer"
 }
-}
+}]
