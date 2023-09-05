@@ -2,7 +2,7 @@ pipeline{
     agent any
     stages{
         stage('Print'){
-            sh "python3 Operations.py ${databaseName} ${Operations}"
+            steps{sh "python3 Operations.py ${databaseName} ${Operations}"}
         }
     }
 }
