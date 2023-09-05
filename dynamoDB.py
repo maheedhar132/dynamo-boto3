@@ -14,7 +14,7 @@ with open("path.yaml", "r") as stream:
 #Fetch file paths
 createSchema = files['createTable']['Schema']
 createDefinition = files['createTable']['attributeDefinitions']
-addData = files['addData']
+addItems = files['addData']
 deleteData = files['deleteData']
 getData = files['getItem']
 itemsToUpdate = files['updateItem']['itemsToUpdate']
@@ -42,7 +42,7 @@ def createTable(name):
 
 def addData(name):
     table = dynamo.Table(name)
-    items = json.loads(pathlib.Path(addData).read_text())
+    items = json.loads(pathlib.Path(addItems).read_text())
     result = ""
     for item in items:
         try:
