@@ -1,4 +1,6 @@
 #from dynamo import *
 import sys
-
-print(sys.argv)
+Operations = sys.argv[1]
+Operations.split(',')
+for operation in Operations:
+    print(operation)

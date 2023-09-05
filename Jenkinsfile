@@ -4,7 +4,7 @@ pipeline{
         stage('Print'){
             steps{
                 print(params.Operations)
-               bat "python Operations.py"
+               bat "Operations.py ${Operations}"
             }
         }
     }
