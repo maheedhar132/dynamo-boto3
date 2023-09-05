@@ -1,15 +1,10 @@
 pipeline{
     agent any
     stages{
-        stage('Print Vars'){
+        stage('Print'){
             steps{
-             print(params.Operations)
-        }
-        stage('Python'){
-            steps{
-                bat "python3 Operations.py ${Operations}"
+                print(params.Operations)
             }
         }
     }
-}
 }
