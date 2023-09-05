@@ -9,6 +9,7 @@ for operation in Operations:
     if operation == "createTable":
         print("Creating Table")
         dynamoDB.createTable(database)
+        dynamoDB.readTable(database)
     if operation == "addData":
         print("adding Items")
         dynamoDB.addData(database)
