@@ -5,7 +5,7 @@ pipeline{
             steps{
                 print(params.Operations)
                 script{
-                  bat "python Operations.py --var=${Operations}"
+                  bat "python Operations.py ${Operations}"
                 }
             }
         }
