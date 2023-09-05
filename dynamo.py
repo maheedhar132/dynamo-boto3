@@ -37,7 +37,7 @@ def createTable(name):
 
     return output
 
-def addItems(name):
+def addData(name):
     table = dynamo.Table(name)
     items = json.loads(pathlib.Path(addData).read_text())
     result = ""
@@ -61,7 +61,7 @@ def readTable(name):
         items = error
     return items
     
-def updateData(name):
+def updateItems(name):
     table = dynamo.Table(name)
     result = ""
     items = json.loads(pathlib.Path(itemsToUpdate).read_text())

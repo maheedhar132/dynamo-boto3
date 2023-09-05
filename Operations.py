@@ -1,8 +1,9 @@
-#from dynamo import *
+from dynamo import *
 import sys
-Operations = sys.argv[1]
+database = sys.argv[1]
+Operations = sys.argv[2]
 print(Operations)
 print(type(Operations))
 Operations=Operations.split(",")
 for operation in Operations:
-    print(operation)
+    dynamo.operation(database)
