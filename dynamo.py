@@ -17,7 +17,7 @@ deleteData = files['deleteData']
 getData = files['getItem']
 itemsToUpdate = files['updateItem']['itemsToUpdate']
 fieldsToUpdate = files['updateItem']['fieldsToUpdate']
-dynamo = boto3.resource('dynamodb')
+dynamo = boto3.resource('dynamodb', region_name ="ap-southeast-1")
 
 def createTable(name):
     try:
