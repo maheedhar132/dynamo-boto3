@@ -20,7 +20,7 @@ getData = files['getItem']
 itemsToUpdate = files['updateItem']['itemsToUpdate']
 fieldsToUpdate = files['updateItem']['fieldsToUpdate']
 print(os.getenv('AWS_ACCESS'))
-dynamo = boto3.resource('dynamodb', region_name ="ap-southeast-1", aws_access_key_id=os.getenv('AWS_ACCESS'),aws_secret_access_key= os.getenv('AWS_KEY'))
+dynamo = boto3.resource('dynamodb', region_name ="ap-south-1", aws_access_key_id=os.getenv('AWS_ACCESS'),aws_secret_access_key= os.getenv('AWS_KEY'))
 
 def createTable(name):
     try:
