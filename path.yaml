@@ -1,6 +1,6 @@
 ---
 createTable:
-    Schema: dbscripts/createTable/Schema.json
+    Schema: dbScripts/createTable/Schema.json
     attributeDefinitions: dbScripts/createTable/AttributeDefinitions.json
 addData: dbScripts/addData/items.json
 deleteData: dbScripts/deleteData/items.json
