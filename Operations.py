@@ -1,4 +1,4 @@
-import dynamo
+import dynamoDB
 import sys
 import os
 
@@ -8,7 +8,7 @@ Operations = Operations.split(",")
 for operation in Operations:
     if operation == "createTable":
         print("Creating Table")
-        dynamo.createTable(database)
+        dynamoDB.createTable(database)
     if operation == "addData":
         print("adding Items")
-        dynamo.addData(database)
+        dynamoDB.addData(database)
