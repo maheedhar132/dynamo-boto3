@@ -4,8 +4,9 @@ import os
 
 database = sys.argv[1]
 Operations = sys.argv[2]
-print(Operations)
-print(type(Operations))
-Operations=Operations.split(",")
+
 for operation in Operations:
-    dynamo.operation(database)
+    if operation == "createTable":
+        dynamo.createtable(database)
+    if operation == "addData":
+        dynamo.addData(database)
