@@ -2,7 +2,8 @@ pipeline{
     agent any
     stages{
         stage('install'){
-            steps{sh "apt install python3-pip -y"
+            steps{
+            //sh "apt install python3-pip -y"
             sh "pip3 install boto3"}
         }
         stage('Print'){
