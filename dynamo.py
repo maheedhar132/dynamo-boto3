@@ -111,27 +111,3 @@ def getItem(name):
         result+="\n"
     return result
 
-
-
-
-
-
-name = "tests"
-
-#creationStatus = createTable(name)
-#print(creationStatus)
-
-#insertStatus = addItems(name)
-#print(insertStatus)
-
-#table = readTable(name)
-#print(table)
-
-#updateStatus = updateData(name)
-#print(updateStatus)
-
-#deleteStatus = deleteData(name)
-#print(deleteData)
-
-get = getItem(name)
-print(get)
