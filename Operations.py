@@ -2,6 +2,7 @@
 import sys
 Operations = sys.argv[1]
 print(Operations)
-Operations.split(',')
+print(type(Operations))
+Operations=Operations.split(",")
 for operation in Operations:
     print(operation)
