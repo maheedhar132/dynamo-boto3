@@ -8,7 +8,8 @@ Operations = Operations.split(",")
 for operation in Operations:
     if operation == "createTable":
         print("Creating Table")
-        dynamoDB.createTable(database)
+        create = dynamoDB.createTable(database)
+        print(create)
         dynamoDB.readTable(database)
     if operation == "addData":
         print("adding Items")
