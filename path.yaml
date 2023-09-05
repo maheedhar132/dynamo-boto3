@@ -2,9 +2,9 @@
 createTable:
     Schema: dbscripts/createTable/Schema.json
     attributeDefinitions: dbScripts/createTable/AttributeDefinitions.json
-addData: dbScripts\addData\items.json
-deleteData: dbScripts\deleteData\items.json
-getItem: dbScripts\getItem\items.json
+addData: dbScripts/addData/items.json
+deleteData: dbScripts/deleteData/items.json
+getItem: dbScripts/getItem/items.json
 updateItem: 
-      itemsToUpdate: dbScripts\updateItem\items.json
-      fieldsToUpdate: dbScripts\updateItem\update.json
+      itemsToUpdate: dbScripts/updateItem/items.json
+      fieldsToUpdate: dbScripts/updateItem/update.json
