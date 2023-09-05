@@ -17,11 +17,12 @@ deleteData = files['deleteData']
 getData = files['getItem']
 itemsToUpdate = files['updateItem']['itemsToUpdate']
 fieldsToUpdate = files['updateItem']['fieldsToUpdate']
+dynamo = boto3.resource('dynamodb')
 
-def createTable(dynamo,Name):
+def createTable(name):
     try:
         table = dynamo.create_table(
-            TableName = Name,
+            Tablename = name,
             KeySchema = json.loads(pathlib.Path(createSchema).read_text()),
             AttributeDefinitions = json.loads(pathlib.Path(createDefinition).read_text()),
                 ProvisionedThroughput={
@@ -36,7 +37,7 @@ def createTable(dynamo,Name):
 
     return output
 
-def addItems(dynamo,name):
+def addItems(name):
     table = dynamo.Table(name)
     items = json.loads(pathlib.Path(addData).read_text())
     result = ""
@@ -52,7 +53,7 @@ def addItems(dynamo,name):
         result+="\n"
     return result
 
-def readTable(dynamo,name):
+def readTable(name):
     table = dynamo.Table(name)
     try:
         items = table.scan()['Items']
@@ -60,7 +61,7 @@ def readTable(dynamo,name):
         items = error
     return items
     
-def updateData(dynamo,name):
+def updateData(name):
     table = dynamo.Table(name)
     result = ""
     items = json.loads(pathlib.Path(itemsToUpdate).read_text())
@@ -78,7 +79,7 @@ def updateData(dynamo,name):
         result+="\n"
     return result
 
-def deleteData(dynamo,name):
+def deleteData(name):
     table = dynamo.Table(name)
     result = ""
     items = json.loads(pathlib.Path(deleteData).read_text())
@@ -93,7 +94,7 @@ def deleteData(dynamo,name):
     return result
 
 
-def getItem(dynamo,name):
+def getItem(name):
     table = dynamo.Table(name)
     result = ""
     items = json.loads(pathlib.Path(getData).read_text())
@@ -111,23 +112,23 @@ def getItem(dynamo,name):
 
 
 
-dynamo = boto3.resource('dynamodb')
+
 name = "tests"
 
-#creationStatus = createTable(dynamo,name)
+#creationStatus = createTable(name)
 #print(creationStatus)
 
-#insertStatus = addItems(dynamo,name)
+#insertStatus = addItems(name)
 #print(insertStatus)
 
-#table = readTable(dynamo,name)
+#table = readTable(name)
 #print(table)
 
-#updateStatus = updateData(dynamo,name)
+#updateStatus = updateData(name)
 #print(updateStatus)
 
-#deleteStatus = deleteData(dynamo,name)
+#deleteStatus = deleteData(name)
 #print(deleteData)
 
-get = getItem(dynamo,name)
+get = getItem(name)
 print(get)

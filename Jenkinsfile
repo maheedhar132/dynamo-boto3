@@ -1,13 +1,14 @@
 pipeline{
     agent any
     stages{
-        stage('Build'){
+        stage('Print Vars'){
             steps{
-                script{
-                    if (params.Operations == "add"){
-                    print("add")
-                    }
-                    }
+             print(params.Operations)
+        }
+        stage('Python'){
+            steps{
+                bat "python3 Operations.py ${Operations}"
+            }
         }
     }
 }
