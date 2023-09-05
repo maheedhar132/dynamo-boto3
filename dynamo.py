@@ -3,6 +3,8 @@ import json
 import pathlib
 import botocore
 import yaml
+import os
+
 
 with open("path.yaml", "r") as stream:
     try:
@@ -17,7 +19,8 @@ deleteData = files['deleteData']
 getData = files['getItem']
 itemsToUpdate = files['updateItem']['itemsToUpdate']
 fieldsToUpdate = files['updateItem']['fieldsToUpdate']
-dynamo = boto3.resource('dynamodb', region_name ="ap-southeast-1")
+dynamo = boto3.resource('dynamodb', region_name ="ap-southeast-1", aws_access_key_id=os.getenv('AWS_ACCESS'),
+         aws_secret_access_key= os.getenv('ACCESS_KEY'))
 
 def createTable(name):
     try:

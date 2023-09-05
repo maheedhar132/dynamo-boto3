@@ -1,5 +1,7 @@
 from dynamo import *
 import sys
+import os
+
 database = sys.argv[1]
 Operations = sys.argv[2]
 print(Operations)
