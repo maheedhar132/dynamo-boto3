@@ -25,7 +25,7 @@ dynamo = boto3.resource('dynamodb', region_name ="ap-south-1", aws_access_key_id
 def createTable(name):
     try:
         table = dynamo.create_table(
-            Tablename = name,
+            TableName = name,
             KeySchema = json.loads(pathlib.Path(createSchema).read_text()),
             AttributeDefinitions = json.loads(pathlib.Path(createDefinition).read_text()),
                 ProvisionedThroughput={
