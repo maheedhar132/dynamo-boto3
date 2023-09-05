@@ -10,7 +10,23 @@ for operation in Operations:
         print("Creating Table")
         create = dynamoDB.createTable(database)
         print(create)
-        dynamoDB.readTable(database)
+        tableData = dynamoDB.readTable(database)
+        print(tableData)
     if operation == "addData":
         print("adding Items")
-        dynamoDB.addData(database)
+        addstatus = dynamoDB.addData(database)
+        print(addstatus)
+        tableData = dynamoDB.readTable(database)
+        print(tableData)
+    if operation == "updateItems":
+        print("updating Items...")
+        updateStatus = dynamoDB.updateItems(database)
+        print(updateStatus)
+    if operation == "getItem":
+        print("getting data")
+        getStatus = dynamoDB.getItem(database)
+        print(getStatus)
+    if operation == "deleteData":
+        print("Deleting requested Data")
+        deleteStatus = dynamoDB.deleteData(database)
+        print(deleteStatus)
